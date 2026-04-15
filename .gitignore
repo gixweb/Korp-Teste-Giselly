@@ -1,0 +1,52 @@
+
+# --- [.NET / C# - Compilação] ---
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.user
+*.suo
+*.log
+
+# --- [NuGet - Pacotes de dependência] ---
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+# --- [IDE - JetBrains Rider / IntelliJ] ---
+.idea/
+*.sln.iml
+.DS_Store
+
+# --- [IDE - Visual Studio] ---
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vscode/
+
+# --- [Configurações Locais / Ambiente] ---
+appsettings.Development.json
+appsettings.Local.json
+*.local.xml
+*.env
+.env
+
+# --- [Cobertura / Testes] ---
+TestResults/
+coverage/
+*.coveragexml
+
+# --- [Sistema Operacional] ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
