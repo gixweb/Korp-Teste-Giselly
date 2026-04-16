@@ -20,5 +20,41 @@ public class NotesController : ControllerBase
         return Ok(await service.ListarTodos()); 
     }
     
-    
+    [HttpPost]
+    public async Task<ActionResult<NotaFiscal>> post(NotaFiscal NotaFiscal){
+        var novaNota = await service.CriarNota(NotaFiscal);
+        if (novaNota == null)
+        {
+            return BadRequest("Não é permitido criar notas com saldo negativo.");
+        }
+        return CreatedAtAction(nameof(Get), new { id = novaNota.Id }, novaNota);
+    }
+
+    [HttpPost("{id}/imprimir")]
+    public async Task<ActionResult<NotaFiscal>> ImprimirNota(int id)
+    {
+        var nota = await service.ImprimirNota(id);
+        if (nota == null)
+        {
+            return NotFound("Nota não encontrada ou já impressa.");
+        }
+        return Ok(nota);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<NotaFiscal>> Put(int id, NotaFiscal notaFiscal)
+    {
+        var nota = await service.AtualizarNota(id, notaFiscal);
+        if (nota == null) return NotFound();
+        return Ok(nota);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var sucesso = await service.DeletarNota(id);
+        if (!sucesso) return NotFound();
+        return NoContent();
+    }
+
 }

@@ -12,12 +12,31 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 42));
 
-builder.Services.AddScoped<NoteService>();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 builder.Services.AddAuthorization();
 
 builder.Services.AddDbContext<NoteDBContext>(options =>
     options.UseMySql(connectionString, serverVersion));
+
+builder.Services.AddHttpClient<NoteService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5149");
+});
+
+// Configuração do CORS para permitir requisições do Angular
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -35,6 +54,7 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<NoteDBContext>();
         // O comando abaixo cria o banco e as tabelas automaticamente 
         // se eles ainda não existirem, ignorando a necessidade de migrations no terminal.
+        context.Database.EnsureDeleted(); // ⚠️ Remove esta linha após o banco estar estável!
         context.Database.EnsureCreated();
         Console.WriteLine("Banco de Notas verificado/criado com sucesso!");
     }
@@ -43,13 +63,9 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine($"Erro ao criar o banco: {ex.Message}");
     }
 }
+app.UseCors("AngularPolicy");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

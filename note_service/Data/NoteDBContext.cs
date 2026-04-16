@@ -7,4 +7,5 @@ public class NoteDBContext : DbContext
     public NoteDBContext(DbContextOptions<NoteDBContext> options) : base(options) { }
     
     public DbSet<NotaFiscal> Notas { get; set; }
+    public DbSet<ItemNotaFiscal> Itens { get; set; }
 }
