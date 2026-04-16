@@ -21,13 +21,20 @@ public class NoteService
     }
     
     public async Task<NotaFiscal> CriarNota(NotaFiscal nota){
+        
+        var NumeroMaximo = await _context.Notas.MaxAsync(n => (int?) n.NumeroNota) ?? 0;
+        nota.NumeroNota = NumeroMaximo + 1;
+
         _context.Notas.Add(nota);
         await _context.SaveChangesAsync();
         return nota;
     }
     
     public async Task<NotaFiscal> BuscarNota(int id){
-        var nota = await _context.Notas.FindAsync(id);
+        var nota = await _context.FindAsync(nota.Id);
+        if(nota == null){
+            return null;
+        }
         return nota;
     }
 

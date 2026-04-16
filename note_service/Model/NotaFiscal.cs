@@ -11,8 +11,8 @@ public enum StatusNotaFiscal
 public class NotaFiscal
 {
         public int Id { get; set; }
-        public string NumeroNota { get; set; } = string.Empty;
-        public int ProdutoId { get; set; } // O ID do produto que está lá no outro banco
+        public int NumeroNota { get; set; } = 0;
+        public int ProdutoId { get; set; } 
         public int Quantidade { get; set; }
         public decimal ValorTotal { get; set; }
         public DateTime DataEmissao { get; set; } = DateTime.Now;
