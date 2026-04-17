@@ -1,0 +1,22 @@
+<p>produto works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of produtos">
+            <td>{{ p.id }}</td>
+            <td>{{ p.nome }}</td>
+            <td>{{ p.preco | currency:'BRL' }}</td>
+            <td>{{ p.quantidade }}</td>
+            <td>
+                <button (click)="editar(p)" class="btn btn-warning">Editar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

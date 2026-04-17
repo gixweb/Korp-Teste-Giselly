@@ -31,7 +31,7 @@ public class NoteService
     }
     
     public async Task<NotaFiscal> BuscarNota(int id){
-        var nota = await _context.FindAsync(nota.Id);
+        var nota = await _context.Notas.FindAsync(id);
         if(nota == null){
             return null;
         }
