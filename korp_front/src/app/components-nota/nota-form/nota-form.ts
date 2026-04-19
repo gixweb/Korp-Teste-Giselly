@@ -12,7 +12,7 @@ import { ProdutoService } from '../../service/produto';
 })
 export class NotaFormComponent implements OnInit {
 
-  notaForm: any = { numero: 0, dataEmissao: '', itens: [], valorTotal: 0 };
+  notaForm: any = { numero: 0, dataEmissao: new Date().toISOString().split('T')[0], itens: [], valorTotal: 0 };
   produtoSelecionadoid: number | null = null;
   quantidadeSelecionada: number = 1;
   produtos: any[] = []; // O HTML usa 'produtos'
@@ -23,7 +23,10 @@ export class NotaFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Quando o form abre, carregamos os produtos para o "dropdown"
+    this.carregarProdutos();
+  }
+
+  carregarProdutos() {
     this.produtoService.listar().subscribe(dados => {
       this.produtos = dados;
     });
@@ -50,13 +53,26 @@ export class NotaFormComponent implements OnInit {
     const produto = this.produtos.find(p => p.id == this.produtoSelecionadoid);
     
     if (produto) {
-      // Cria o ItemNotaFiscal esperado pelo C# (com a descrição apenas pro HTML)
+      // Verifica se há saldo suficiente
+      if (produto.saldo < this.quantidadeSelecionada) {
+        alert("Erro: Produto esgotado ou saldo insuficiente!");
+        return;
+      }
+
+      // Deduz do saldo visualmente na tela
+      produto.saldo -= this.quantidadeSelecionada;
+
+      const valorUnitario = produto.valor || 0;
+      const valorTotalItem = valorUnitario * this.quantidadeSelecionada;
+      
       this.notaForm.itens.push({
         produtoId: produto.id,
         produtoDescricao: produto.descricao, // Usado apenas na tela
         quantidade: this.quantidadeSelecionada,
-        valorTotal: 0 // ValorTotal era legacy ou nós não controlamos preços, manda 0 ou a regra de negócios C# resolve
+        valorTotal: valorTotalItem 
       });
+      
+      this.notaForm.valorTotal += valorTotalItem;
       
       // Reseta a seleção
       this.produtoSelecionadoid = null;
@@ -65,6 +81,8 @@ export class NotaFormComponent implements OnInit {
   }
 
   limpar() {
-    this.notaForm = { numero: 0, dataEmissao: '', itens: [], valorTotal: 0 };
+    this.notaForm = { numero: 0, dataEmissao: new Date().toISOString().split('T')[0], itens: [], valorTotal: 0 };
+    // Recarrega os dados do estoque para voltar ao normal caso o usuário não tenha salvo
+    this.carregarProdutos();
   }
 }

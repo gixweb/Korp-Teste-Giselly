@@ -4,9 +4,6 @@
 <table *ngIf="!carregando">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Número</th>
-            <th>Quantidade</th>
             <th>Data de Emissão</th>
             <th>Valor Total</th>
             <th>Itens</th>
@@ -15,17 +12,19 @@
     </thead>
     <tbody>
         <tr *ngFor="let nota of notas">
-            <td>{{ nota.id }}</td>
-            <td>{{ nota.numero }}</td>
-            <td>{{ nota.quantidade }}</td>
-            <td>{{ nota.dataEmissao }}</td>
-            <td>{{ nota.valorTotal }}</td>
-            <td>{{ nota.itens }}</td>
-            <td>{{ nota.status }}</td>
+            <td>{{ nota.numeroNota }}</td>
+            <td>{{ nota.dataEmissao | date:'dd/MM/yyyy' }}</td>
+            <td>R$ {{ nota.valorTotal | number:'1.2-2' }}</td>
+            <td>{{ nota.itens?.length }} itens</td>
             <td>
-                <button (click)="editar(nota)">Editar</button>
-                <button (click)="imprimir(nota)" [disabled]="nota.status !== 'Ativa'"> Imprimir</button>
-                <button (click)="excluir(nota)">Excluir</button>
+                <span class="badge" [ngClass]="{'bg-success': nota.status === 1, 'bg-dark': nota.status === 4}">
+                    {{ nota.status === 1 ? 'Ativa' : (nota.status === 4 ? 'Fechada' : nota.status) }}
+                </span>
+            </td>
+            <td>
+                <button (click)="imprimir(nota)" class="btn btn-sm btn-primary"
+                    [disabled]="nota.status !== 1">Imprimir</button>
+                <button (click)="excluir(nota)" class="btn btn-sm btn-danger ms-2">Excluir</button>
             </td>
         </tr>
     </tbody>

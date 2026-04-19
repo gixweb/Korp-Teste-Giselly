@@ -1,7 +1,7 @@
 <form class="p-3">
     <div class="mb-3">
         <label class="form-label">Número da Nota</label>
-        <input type="number" [(ngModel)]="notaForm.numero" name="numero" class="form-control" placeholder="0001">
+        <input type="text" class="form-control text-muted" value="Nº Gerado Automaticamente" disabled>
     </div>
     <div class="mb-3">
         <label class="form-label">Data de Emissão</label>
@@ -9,11 +9,12 @@
     </div>
     <!-- SEÇÃO DE ADICIONAR ITENS -->
     <div class="border p-3 mb-3 bg-light rounded">
-        <h6>Adicionar Itens</h6>
+        <h2>Adicionar Itens</h2>
         <div class="d-flex gap-2 mb-2">
             <select [(ngModel)]="produtoSelecionadoid" name="prodSel" class="form-select">
                 <option value="null">Selecione um produto</option>
-                <option *ngFor="let p of produtos" [value]="p.id">{{ p.descricao }} (Saldo: {{p.saldo}})</option>
+                <option *ngFor="let p of produtos" [value]="p.id">{{ p.codigo }} (Saldo: {{p.saldo}}) - R$ {{ p.valor |
+                    number:'1.2-2' }}</option>
             </select>
 
             <input type="number" [(ngModel)]="quantidadeSelecionada" name="qtdSel" class="form-control"
@@ -24,12 +25,13 @@
         <!-- LISTA DE ITENS JÁ ADICIONADOS -->
         <ul class="list-group list-group-flush small" *ngIf="notaForm.itens.length > 0">
             <li *ngFor="let item of notaForm.itens" class="list-group-item d-flex justify-content-between">
-                {{ item.produtoDescricao }} (x{{item.quantidade}})
+                <span>{{ item.produtoDescricao }} (x{{item.quantidade}})</span>
+                <span>R$ {{ item.valorTotal | number:'1.2-2' }}</span>
             </li>
         </ul>
     </div>
     <div class="mb-3">
-        <strong>Valor Total: R$ {{notaForm.valorTotal}}</strong>
+        <strong>Valor Total: R$ {{ notaForm.valorTotal | number:'1.2-2' }}</strong>
     </div>
     <div class="d-flex gap-2">
         <button type="button" (click)="salvar()" class="btn btn-success flex-grow-1">Salvar Nota</button>

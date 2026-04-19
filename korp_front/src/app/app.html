@@ -1,34 +1,11 @@
-<header class="navbar">
+<header class="navbar" style="display: flex; gap: 20px; align-items: center;">
   <h1>🚀 Korp Manager - Giselly</h1>
+  <nav>
+    <a routerLink="/produtos" routerLinkActive="active" style="color: white; margin-right: 15px; text-decoration: none; font-weight: bold;">Produtos</a>
+    <a routerLink="/notes" routerLinkActive="active" style="color: white; text-decoration: none; font-weight: bold;">Notas Fiscais</a>
+  </nav>
 </header>
-<main class="dashboard-container">
-
-  <!-- Coluna da Esquerda: Produtos -->
-  <section class="column">
-    <div class="card">
-      <h2>📦 Cadastro de Produto</h2>
-      <app-produto-form></app-produto-form>
-    </div>
-
-    <div class="card">
-      <h2>📋 Lista de Estoque</h2>
-      <app-produto></app-produto>
-    </div>
-  </section>
-
-  <!-- Coluna da Direita: Notas Fiscais -->
-  <section class="column">
-    <div class="card">
-      <h2>🧾 Nova Nota Fiscal</h2>
-      <app-nota-form></app-nota-form>
-    </div>
-
-    <div class="card">
-      <h2>📜 Histórico de Vendas</h2>
-      <app-nota-lista></app-nota-lista>
-    </div>
-  </section>
-
+<main class="dashboard-container" style="padding-top: 20px;">
+  <!-- O conteúdo de ProdutosPage ou NotasPage será renderizado aqui -->
+  <router-outlet></router-outlet>
 </main>
-
-<router-outlet></router-outlet>

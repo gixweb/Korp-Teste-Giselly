@@ -12,7 +12,7 @@ import { ProdutoService } from '../../service/produto';
   styleUrl: './produto-form.css',
 })
 export class ProdutoFormComponent {
-  @Input() produtoForm: Produto = { codigo: '', descricao: '', saldo: 0 };
+  @Input() produtoForm: Produto = { codigo: '', descricao: '', saldo: 0, valor: 0 };
   produtos: Produto[] = [];
   constructor(private service: ProdutoService) { }
 
@@ -24,7 +24,7 @@ export class ProdutoFormComponent {
   }
 
   limpar() {
-    this.produtoForm = { id: undefined, codigo: '', descricao: '', saldo: 0 };
+    this.produtoForm = { id: undefined, codigo: '', descricao: '', saldo: 0, valor: 0 };
   }
 
   enviar() {

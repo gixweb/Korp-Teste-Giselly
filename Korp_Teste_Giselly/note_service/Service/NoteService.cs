@@ -17,7 +17,7 @@ public class NoteService
     
     public async Task<List<NotaFiscal>> ListarTodos()
     {
-        return await _context.Notas.ToListAsync();
+        return await _context.Notas.Include(n => n.Itens).ToListAsync();
     }
     
     public async Task<NotaFiscal> CriarNota(NotaFiscal nota){

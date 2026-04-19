@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Stock_Service.Data;
 using Stock_Service.Model;
 namespace Stock_Service.Service;
@@ -51,6 +51,7 @@ public class ProdutoService
         produto.Codigo = produtoAtualizado.Codigo;
         produto.Descricao = produtoAtualizado.Descricao;
         produto.Saldo = produtoAtualizado.Saldo;
+        produto.Valor = produtoAtualizado.Valor;
 
         await _context.SaveChangesAsync();
         return true;

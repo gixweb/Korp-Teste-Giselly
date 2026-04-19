@@ -8,7 +8,7 @@ import { Produto } from '../models/produto-model';
 })
 export class ProdutoService {
 
-  private readonly API = 'http://localhost:5149/api/Produto';
+  private readonly API = 'http://127.0.0.1:5149/api/Produto';
   
   // Criamos um "mensageiro" para avisar ou outros componentes que a lista mudou
   produtosAtualizados = new Subject<void>();
