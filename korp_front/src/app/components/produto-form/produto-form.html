@@ -1,9 +1,0 @@
-<p>produto-form works!</p>
-<form (submit)="salvar()">
-    <input type="text" [(ngModel)]="produtoForm.nome" name="nome" placeholder="Nome">
-    <input type="number" [(ngModel)]="produtoForm.preco" name="preco" placeholder="Preço">
-    <input type="number" [(ngModel)]="produtoForm.quantidade" name="quantidade" placeholder="Quantidade">
-
-    <button type="submit">{{ produtoForm.id ? 'Atualizar' : 'Cadastrar' }}</button>
-    <button type="button" (click)="limpar()">Cancelar</button>
-</form>

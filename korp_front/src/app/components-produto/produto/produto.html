@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of produtos">
+            <td>{{ p.id }}</td>
+            <td>{{ p.codigo }}</td>
+            <td>{{ p.descricao }}</td>
+            <td>{{ p.saldo }}</td>
+            <button (click)="editar(p)" class="btn btn-warning">Editar</button>
+            <button (click)="excluir(p.id)" class="btn btn-danger">Excluir</button>
+        </tr>
+    </tbody>
+</table>

@@ -6,6 +6,7 @@ namespace Stock_Service;
 
 [ApiController]
 [Route("api/[controller]")]
+[EnableCors("AllowAngular")]
 public class ProdutoController : ControllerBase
 {
     private readonly ProdutoService _service;

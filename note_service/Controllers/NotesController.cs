@@ -7,6 +7,7 @@ namespace Note_Service.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[EnableCors("AllowAngular")]
 public class NotesController : ControllerBase
 {
     private readonly NoteService service;

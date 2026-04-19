@@ -4,7 +4,7 @@ public class Produto
 {
     public int Id { get; set; }
     
-    public string Codigo { get; set; } = string.Empty; // [cite: 21]
-    public string Descricao { get; set; } = string.Empty; // [cite: 22]
-    public int Saldo { get; set; } // [cite: 23]
+    public string codigo { get; set; } = string.Empty; // [cite: 21]
+    public string descricao { get; set; } = string.Empty; // [cite: 22]
+    public int saldo { get; set; } // [cite: 23]
 }
