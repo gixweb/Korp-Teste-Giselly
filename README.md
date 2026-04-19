@@ -32,7 +32,7 @@ dotnet run
 ```
 cd note_service
 dotnet run
-``
+```
 # Terminal 3 - Executando o SPA (Front-end)
 Abra um terminal na pasta do front-end e instale/estarte a aplicação:
 
