@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../service/produto'; // Importa o serviço
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-produto',
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatTableModule],
   templateUrl: './produto.html',
   styleUrl: './produto.css',
 })

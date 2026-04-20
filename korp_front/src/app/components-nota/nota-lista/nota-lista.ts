@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotaService } from '../../service/nota';
 import { Nota } from '../../models/nota-model';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-nota-lista',
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatTableModule],
   templateUrl: './nota-lista.html',
   styleUrl: './nota-lista.css',
 })

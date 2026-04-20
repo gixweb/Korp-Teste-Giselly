@@ -1,4 +1,4 @@
-<table class="table">
+<table>
     <thead>
         <tr>
             <th>ID</th>
@@ -6,6 +6,7 @@
             <th>Descrição</th>
             <th>Saldo</th>
             <th>Valor</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -14,9 +15,11 @@
             <td>{{ p.codigo }}</td>
             <td>{{ p.descricao }}</td>
             <td>{{ p.saldo }}</td>
-            <td>{{ p.valor }}</td>
-            <button (click)="editar(p)" class="btn btn-warning">Editar</button>
-            <button (click)="excluir(p.id)" class="btn btn-danger">Excluir</button>
+            <td>R$ {{ p.valor | number:'1.2-2' }}</td>
+            <td>
+                <button mat-raised-button color="accent" (click)="editar(p)" style="margin-right: 8px;">Editar</button>
+                <button mat-raised-button color="warn" (click)="excluir(p.id)">Excluir</button>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotaService } from '../../service/nota';
 import { ProdutoService } from '../../service/produto';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-nota-form',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatButtonModule],
   templateUrl: './nota-form.html',
   styleUrl: './nota-form.css',
 })
@@ -51,7 +52,7 @@ export class NotaFormComponent implements OnInit {
 
     // Achar o produto na lista para pegar a descrição
     const produto = this.produtos.find(p => p.id == this.produtoSelecionadoid);
-    
+
     if (produto) {
       // Verifica se há saldo suficiente
       if (produto.saldo < this.quantidadeSelecionada) {
@@ -64,16 +65,16 @@ export class NotaFormComponent implements OnInit {
 
       const valorUnitario = produto.valor || 0;
       const valorTotalItem = valorUnitario * this.quantidadeSelecionada;
-      
+
       this.notaForm.itens.push({
         produtoId: produto.id,
         produtoDescricao: produto.descricao, // Usado apenas na tela
         quantidade: this.quantidadeSelecionada,
-        valorTotal: valorTotalItem 
+        valorTotal: valorTotalItem
       });
-      
+
       this.notaForm.valorTotal += valorTotalItem;
-      
+
       // Reseta a seleção
       this.produtoSelecionadoid = null;
       this.quantidadeSelecionada = 1;

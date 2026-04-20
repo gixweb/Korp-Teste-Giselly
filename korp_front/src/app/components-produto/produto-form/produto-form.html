@@ -3,5 +3,5 @@
     <input [(ngModel)]="produtoForm.descricao" name="descricao" type="text" placeholder="Descrição">
     <input [(ngModel)]="produtoForm.saldo" name="saldo" type="number" placeholder="Saldo">
     <input [(ngModel)]="produtoForm.valor" name="valor" type="number" placeholder="Valor">
-    <button type="button" (click)="enviar()" class="btn btn-primary">Salvar Produto</button>
+    <button type="button" mat-raised-button color="primary" (click)="enviar()" style="margin-top: 10px;">Salvar Produto</button>
 </form>

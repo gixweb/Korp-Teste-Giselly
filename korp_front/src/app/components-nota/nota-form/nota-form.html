@@ -20,7 +20,8 @@
             <input type="number" [(ngModel)]="quantidadeSelecionada" name="qtdSel" class="form-control"
                 style="width: 80px;" min="1">
 
-            <button type="button" (click)="adicionarProduto()" class="btn btn-primary">Add</button>
+            <button type="button" mat-raised-button color="primary" (click)="adicionarProduto()">Add</button>
+
         </div>
         <!-- LISTA DE ITENS JÁ ADICIONADOS -->
         <ul class="list-group list-group-flush small" *ngIf="notaForm.itens.length > 0">
@@ -33,8 +34,8 @@
     <div class="mb-3">
         <strong>Valor Total: R$ {{ notaForm.valorTotal | number:'1.2-2' }}</strong>
     </div>
-    <div class="d-flex gap-2">
-        <button type="button" (click)="salvar()" class="btn btn-success flex-grow-1">Salvar Nota</button>
-        <button type="button" (click)="limpar()" class="btn btn-outline-danger">Limpar</button>
+    <div class="d-flex gap-2 mt-3">
+        <button type="button" mat-raised-button color="primary" (click)="salvar()" class="flex-grow-1">Salvar Nota</button>
+        <button type="button" mat-raised-button color="warn" (click)="limpar()">Limpar</button>
     </div>
 </form>

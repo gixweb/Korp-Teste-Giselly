@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Produto } from '../../models/produto-model';
 import { ProdutoService } from '../../service/produto';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-produto-form',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatButtonModule],
   templateUrl: './produto-form.html',
   styleUrl: './produto-form.css',
 })
