@@ -15,9 +15,9 @@ O projeto foi dividido em três frentes principais para garantir escalabilidade 
 * Banco de Dados: MySQL com Entity Framework Core (Code-First e Migrations).
 * Integração: Injeção de Dependências, HttpClient, Padrão MVC.
 
-Neste repositório, estão inclusos os serviços de `stock_service` e `note_service` bem como o Frontend, aplicando os seguintes pilares teóricos e práticos que solidificam a arquitetura:
-
 ---
+
+Neste repositório, estão inclusos os serviços de `stock_service` e `note_service` bem como o Frontend, aplicando os seguintes pilares teóricos e práticos que solidificam a arquitetura:
 
 ## 1. Ciclos de Vida Angular (Lifecycle Hooks)
 No Angular, garantir que os dados de uma aplicação estejam corretos e sincronizados com a renderização da tela é fundamental.
